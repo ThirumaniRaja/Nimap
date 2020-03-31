@@ -13,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 
 const material =[
   CommonModule,
@@ -28,6 +29,7 @@ const material =[
   MatFormFieldModule,
   MatDialogModule,
   MatSnackBarModule,
+  MatSelectModule,
   MatMenuModule];
 
 @NgModule({
