@@ -1,12 +1,36 @@
-<h1 mat-dialog-title>Hi </h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+<div class="main_dialog">
+  <div class="title">
+    <span class="title_text">Register</span>
+    <span>
+      <i class="material-icons closeIcon" (click)="closeDialog()">close</i>
+    </span>
+
+  </div>
+
+  <div mat-dialog-content>
+
+    <form [formGroup]="registerForm">
+      <div (click)="fileInput.click()">
+        <input type="file" accept="image/*" #fileInput (click)="fileInput.value = null"
+              (change)="imageUpload($event)" style="display: none;">
+            <i class="material-icons camera">
+              camera_enhance
+            </i>
+            <!-- <div class="change__profile_image-selected" [style.backgroundImage]="'url('+ imageContainer +')'"></div> -->
+      </div>
+      <mat-form-field appearance='outline'>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="fname" type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance='outline'>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lname" type="text">
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button (click)="closeDialog()">Cancel</button>
+    <button mat-flat-button class="btn_color text_color" [mat-dialog-close]="" cdkFocusInitial>Submit</button>
+  </div>
 </div>

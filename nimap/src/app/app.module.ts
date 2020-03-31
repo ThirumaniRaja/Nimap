@@ -11,6 +11,7 @@ import { MaterialModule } from './material/material/material.module';
 import { HomeComponent } from './home/home.component';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

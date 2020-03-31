@@ -3,9 +3,9 @@
         <h2>MIMAP</h2> 
       <div class="main all_text">
         <span class="menu_text float_right">
-            <span>Home</span>
-            <span>MyOrders</span>
-            <span>Cart</span>
+            <span [routerLink]="['/home']">Home</span>
+            <span [routerLink]="['/profile']">My Profile</span>
+
             <span>
                 <i class="material-icons" style="vertical-align: sub" [matMenuTriggerFor]="menu">
                     menu
@@ -14,8 +14,8 @@
         </span>
       
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>Profile</button>
-            <button mat-menu-item>Wishlist</button>
+            <button mat-menu-item [routerLink]="['/home']">Home</button>
+            <button mat-menu-item [routerLink]="['/profile']">MyProfile</button>
         </mat-menu>
       </div>
       </mat-toolbar>
