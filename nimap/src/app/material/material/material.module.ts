@@ -14,6 +14,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
 
 const material =[
   CommonModule,
@@ -29,6 +30,7 @@ const material =[
   MatFormFieldModule,
   MatDialogModule,
   MatSnackBarModule,
+  MatChipsModule,
   MatSelectModule,
   MatMenuModule];
 
