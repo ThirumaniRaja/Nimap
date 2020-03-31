@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DialogComponent implements OnInit {
 
   registerForm: FormGroup;
+  country = 'country';
+  state = 'state';
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private dialogRef: MatDialogRef<DialogComponent>,
   private formBuilder: FormBuilder) { }
