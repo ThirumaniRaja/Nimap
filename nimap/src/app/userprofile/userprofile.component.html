@@ -1,5 +1,5 @@
 <div class="main_container">
-    <div class="card_details col-lg-12 col-md-12 col-12">
+    <div class="card_details col-lg-12 col-md-12 col-12" *ngFor="let data of registeredData let i = index;" >
         <div class="row">
             <div class="col-lg-4 col-md-12 col-12">
                 <div>Profile</div>
@@ -7,10 +7,23 @@
                     <img src="‪" alt="" height="60" width="40px">
                 </div>
             </div>
-            <div class="col-lg-8 col-md-12 col-12">
-                
+            <div class="col-lg-6 col-md-12 col-12">
+                <div style="text-align: justify;">
+                    <span *ngIf="data.fname !==''">I'm {{data.fname}}&nbsp;</span>
+                    <span *ngIf="data.age !==''">and my age is {{data.age}}&nbsp;</span>
+                    <span *ngIf="data.email !==''">and you can send your emails to {{data.email}}.&nbsp;</span>
+                    <span *ngIf="data.state !==''">I live in the state of {{data.state}}&nbsp;</span>
+                    <span *ngIf="data.hobbies.length > 0">, I like to play </span>
+                    <span *ngIf="data.hobbies.length > 0">
+                        <span *ngFor="let hobby of data.hobbies">
+                            {{hobby.name}}&nbsp;,
+                        </span>
+                    </span>
+                    <span *ngIf="data.subscribe">and please send me newsletter</span>
+                    <span *ngIf="data.phone !==''">, please reach out to me on my phone number {{data.phone}}</span>
+                </div>
             </div>
-    
+
         </div>
     </div>
 </div>

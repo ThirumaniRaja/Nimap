@@ -62,17 +62,17 @@
           </mat-form-field>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Address</mat-label>
-            <mat-select [(value)]="country">
+            <mat-select [(value)]="adds">
               <mat-option value="home">
                 Home
               </mat-option>
               <mat-option value="company">
-                Comapny
+                Company
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-          <div>
+          <div *ngIf="adds ==='home'">
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>HomeAddress1</mat-label>
               <input matInput type="text" formControlName="homeAddress1">
@@ -84,7 +84,7 @@
           </div>
 
 
-          <div>
+          <div *ngIf="adds ==='company'">
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>CompanyAddress1</mat-label>
               <input matInput type="text" formControlName="companyAddress1">

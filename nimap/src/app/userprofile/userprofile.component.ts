@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./userprofile.component.scss']
 })
 export class UserprofileComponent implements OnInit {
+  registeredData: any;
+  hobbies:[];
 
-  constructor() { }
+  constructor(private userData: RegisterService) { }
 
   ngOnInit(): void {
+    this.loadUserData();
   }
 
+  loadUserData() {
+    this.userData.getUser().subscribe(result => {
+      console.log(result)
+      this.registeredData = result;
+      this.hobbies =result[0]['hobbies'];
+      console.log(this.hobbies)
+    })
+  }
 }

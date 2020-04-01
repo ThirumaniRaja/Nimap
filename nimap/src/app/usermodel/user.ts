@@ -8,11 +8,7 @@ export interface IUser{
     phone?:number,
     state?:string,
     country?:string,
-    homeaddress1?:string,
-    homeaddress2?:string,
-    companyaddress1?:string,
-    companyaddress2?:string,
+    address?:any,
     hobbies?:any,
     subscribe?:boolean
-
 }
