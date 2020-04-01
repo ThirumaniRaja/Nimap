@@ -1,6 +1,7 @@
 <div class="main_dialog">
   <div class="title">
-    <span class="title_text">Register</span>
+    <span *ngIf="data.action ==='register'" class="title_text">Register</span>
+    <span *ngIf="data.action ==='update'" class="title_text">Update Form</span>
     <span>
       <i class="material-icons closeIcon" (click)="closeDialog()">close</i>
     </span>
@@ -25,28 +26,28 @@
 
           <mat-form-field appearance='outline' style="width: 40%; margin-right: 15px;">
             <mat-label>First Name</mat-label>
-            <input matInput formControlName="fname" type="text">
+            <input matInput formControlName="fname" type="text" [readonly]='formDisable'>
           </mat-form-field>
 
           <mat-form-field appearance='outline' style="width: 35%;">
             <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lname" type="text">
+            <input matInput formControlName="lname" type="text" [readonly]='formDisable'>
           </mat-form-field>
 
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Email</mat-label>
-            <input matInput type="mail" formControlName="email">
+            <input matInput type="mail" formControlName="email" [readonly]='formDisable'>
           </mat-form-field>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Phone Number</mat-label>
-            <input matInput type="number" formControlName="phone">
+            <input matInput type="number" formControlName="phone" [readonly]='formDisable'>
           </mat-form-field>
           <br>
           <mat-label>Age</mat-label>&nbsp;<mat-label *ngIf="age > 0">{{age}}</mat-label>
-          <mat-slider min="0" max="60" step="1" [(value)]="age" style="width: 80%;"></mat-slider>
+          <mat-slider min="0" max="60" step="1" [(value)]="age" style="width: 80%;" [disabled]='formDisable'></mat-slider>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>State</mat-label>
-            <mat-select [(value)]="state" formControlName="state">
+            <mat-select [(value)]="state" formControlName="state" [disabled]='formDisable'>
               <mat-option value="Maharashtra">
                 Maharashtra
               </mat-option>
@@ -54,7 +55,7 @@
           </mat-form-field>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Country</mat-label>
-            <mat-select [(value)]="country" formControlName="country">
+            <mat-select [(value)]="country" formControlName="country" [disabled]='formDisable'>
               <mat-option value="India">
                 india
               </mat-option>
@@ -62,7 +63,7 @@
           </mat-form-field>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Address</mat-label>
-            <mat-select [(value)]="adds">
+            <mat-select [(value)]="adds" [disabled]='formDisable' formControlName="address">
               <mat-option value="home">
                 Home
               </mat-option>
@@ -75,11 +76,11 @@
           <div *ngIf="adds ==='home'">
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>HomeAddress1</mat-label>
-              <input matInput type="text" formControlName="homeAddress1">
+              <input matInput type="text" formControlName="homeAddress1" [disabled]='formDisable'>
             </mat-form-field>
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>HomeAddress2</mat-label>
-              <input matInput type="text" formControlName="homeAddress2">
+              <input matInput type="text" formControlName="homeAddress2" [disabled]='formDisable'>
             </mat-form-field>
           </div>
 
@@ -87,15 +88,15 @@
           <div *ngIf="adds ==='company'">
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>CompanyAddress1</mat-label>
-              <input matInput type="text" formControlName="companyAddress1">
+              <input matInput type="text" formControlName="companyAddress1" [readonly]='formDisable'>
             </mat-form-field>
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>CompanyAddress2</mat-label>
-              <input matInput type="text" formControlName="companyAddress2">
+              <input matInput type="text" formControlName="companyAddress2" [readonly]='formDisable'>
             </mat-form-field>
           </div>
           <mat-form-field class="example-chip-list">
-            <mat-chip-list #chipList aria-label="tag selection">
+            <mat-chip-list #chipList aria-label="tag selection" [disabled]='formDisable'>
               <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
                        [removable]="removable" (removed)="remove(tag)">
                 {{tag.name}}
@@ -108,13 +109,14 @@
                      (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
           </mat-form-field>
-          <mat-checkbox (change)='subscribeCheckbox($event)'>subscribe to newsletter</mat-checkbox>
+          <mat-checkbox (change)='subscribeCheckbox($event)' [checked]='checknewsletter' [disabled]='formDisable'>subscribe to newsletter</mat-checkbox>
         </div>
       </form>
     </div>
   </div>
   <div mat-dialog-actions class="action_div">
     <button mat-stroked-button (click)="closeDialog()">Cancel</button>
-    <button mat-flat-button class="btn_color text_color" (click)="onSubmitForm()" cdkFocusInitial>Submit</button>
+    <button *ngIf="data.action ==='update'" mat-flat-button class="btn_color text_color" (click)="onUpdateForm()" cdkFocusInitial>Update</button>
+    <button *ngIf="data.action ==='register'" mat-flat-button class="btn_color text_color" (click)="onSubmitForm()" cdkFocusInitial>Submit</button>
   </div>
 </div>

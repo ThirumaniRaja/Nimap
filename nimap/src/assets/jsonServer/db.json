@@ -1,30 +1,6 @@
 {
   "users": [
     {
-      "fname": "raja",
-      "lanme": "mani",
-      "email": "td@mani.com",
-      "phone": 9892546730,
-      "profilePic": "",
-      "age": 25,
-      "state": "Maharashtra",
-      "country": "India",
-      "companyaddress1": "sion mumbai",
-      "companyaddress2": "",
-      "homeaddress1": "sion mumbai",
-      "homeaddress2": "",
-      "hobbies": [
-        {
-          "name": "Cricket"
-        },
-        {
-          "name": "basket ball"
-        }
-      ],
-      "subscribe": true,
-      "id": "8CoIc94"
-    },
-    {
       "fname": "nitin",
       "lanme": "kumar",
       "email": "ty@infotech.com",

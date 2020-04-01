@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IUser } from '../../usermodel/user';
@@ -30,6 +30,7 @@ export class DialogComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  formDisable = false;
   age = 0;
   checknewsletter = false;
 
@@ -43,10 +44,26 @@ export class DialogComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
     private register: RegisterService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar) {
+      console.log(data)
+      //this.onEditData();
+      
+     }
 
   ngOnInit(): void {
+    this.onEditPhoto();
+    // this.onEditData();
     this.createForm();
+  }
+  ngAfterViewInit(){
+        this.onEditData();
+  }
+
+  onEditPhoto(){
+    if(this.data.edit === 'photo'){
+      this.formDisable = true;
+      console.log("disable")
+    }
   }
 
   get RegisterFormControls() {
@@ -62,7 +79,8 @@ export class DialogComponent implements OnInit {
       profilepic: [''],
       email: ['', [Validators.email]],
       phone: ['', [Validators.maxLength(10)]],
-      state: [''],
+      address:[''],
+      state:  [''],
       country: [''],
       homeAddress1: [''],
       homeAddress2: [''],
@@ -112,8 +130,7 @@ export class DialogComponent implements OnInit {
       country: this.registerForm.value.country,
       hobbies: this.tags,
       subscribe: this.checknewsletter,
-      address:this.addressData
-      
+      address:this.addressData  
     }
 
     if (this.RegisterFormControls.fname.valid) {
@@ -148,4 +165,23 @@ export class DialogComponent implements OnInit {
       this.tags.splice(index, 1);
     }
   }
+
+  onUpdateForm(){
+
+  }
+
+  onEditData(){
+    if(this.data.action === 'update'){
+      console.log(this.data.updateData.state)
+      this.registerForm.patchValue({  
+        state: this.data.updateData.state,
+        fname:this.data.updateData.fname,
+        lname:this.data.updateData.lanme
+
+      });
+      // this.registerForm.patchValue({});
+
+  }
+}
+
 }

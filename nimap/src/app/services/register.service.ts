@@ -17,4 +17,7 @@ export class RegisterService {
   getUser():Observable<IUser[]>{
     return this.http.get<IUser[]>(environment.apiURL + apiEndpoint.adduser)
   }
+  updateUser(data:any):Observable<IUser[]>{
+    return this.http.put<IUser[]>(environment.apiURL + apiEndpoint.adduser,data)
+  }
 }

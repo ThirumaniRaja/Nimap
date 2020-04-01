@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../services/register.service';
+import { DialogComponent } from '../commoncomponents/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-userprofile',
@@ -10,7 +12,7 @@ export class UserprofileComponent implements OnInit {
   registeredData: any;
   hobbies:[];
 
-  constructor(private userData: RegisterService) { }
+  constructor(private userData: RegisterService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadUserData();
@@ -24,4 +26,21 @@ export class UserprofileComponent implements OnInit {
       console.log(this.hobbies)
     })
   }
+
+  onClickUpdate(formData){
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '500px',
+      height:'600px',
+      data: { action: 'update',updateData:formData}
+    });
+  }
+
+  onClickProfileUpdate(formData,value){
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '500px',
+      height:'600px',
+      data: { action: 'update',updateData:formData,edit:value}
+    });
+  }
+  
 }
