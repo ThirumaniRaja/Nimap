@@ -15,6 +15,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
+import { HttpClientModule } from '@angular/common/http';
 
 const material =[
   CommonModule,
@@ -32,6 +33,7 @@ const material =[
   MatSnackBarModule,
   MatChipsModule,
   MatSelectModule,
+  HttpClientModule,
   MatMenuModule];
 
 @NgModule({

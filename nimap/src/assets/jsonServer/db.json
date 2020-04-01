@@ -1,9 +1,74 @@
 {
-    "users":[
+    "users": [
         {
-            "id":"1",
-            "firstname":"raja"
-
+            "id": "1",
+            "profilePic": "",
+            "firstname": "Thiru",
+            "lastname": "TD",
+            "email": "thiru@td.com",
+            "phone": "9876543210",
+            "age": "25",
+            "state": "Tamil Nadu",
+            "country": "Kumarikandam",
+            "address": [
+                {
+                    "homeAddress": [
+                        {
+                            "address1": ""
+                        },
+                        {
+                            "address2": ""
+                        }
+                    ]
+                },
+                {
+                    "officeAddress": [
+                        {
+                            "address1": ""
+                        },
+                        {
+                            "address2": ""
+                        }
+                    ]
+                }
+            ],
+            "hobbies": ["cricket"],
+            "subscribe": "true"
+        },
+        {
+            "id": "2",
+            "profilePic": "",
+            "firstname": "Raja",
+            "lastname": "Durai",
+            "email": "durai@td.com",
+            "phone": "9789543210",
+            "age": "35",
+            "state": "Tamil Nadu",
+            "country": "Kumarikandam",
+            "address": [
+                {
+                    "homeAddress": [
+                        {
+                            "address1": ""
+                        },
+                        {
+                            "address2": ""
+                        }
+                    ]
+                },
+                {
+                    "officeAddress": [
+                        {
+                            "address1": ""
+                        },
+                        {
+                            "address2": ""
+                        }
+                    ]
+                }
+            ],
+            "hobbies": ["cricket","foolball"],
+            "subscribe": "true"
         }
     ]
 }

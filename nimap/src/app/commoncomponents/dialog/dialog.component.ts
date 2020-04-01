@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {IUser} from '../../usermodel/user';
 
 export interface Tags {
   name: string;
@@ -22,6 +23,7 @@ export class DialogComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  userData:IUser;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: Tags[] = [
     {name: 'Cricket'}
@@ -35,12 +37,15 @@ export class DialogComponent implements OnInit {
     this.createForm();
   }
 
+  get RegisterFormControls() {
+    return this.registerForm.controls;
+  }
   closeDialog() {
     this.dialogRef.close();
   }
   createForm() {
     this.registerForm = this.formBuilder.group({
-      fname: ['', [Validators.required]],
+      fname: ['', [Validators.pattern('/^[a-zA-Z]{3,7}$/')]],
       lname: ['', [Validators.required, Validators.email]],
     });    
   }
@@ -58,6 +63,13 @@ export class DialogComponent implements OnInit {
   }
 
   onSubmitForm(){
+   this.userData = {
+     fname:this.registerForm.value.fname
+   }
+
+   if(this.RegisterFormControls.fname.invalid){
+     console.log("invali",this.RegisterFormControls.fname.hasError('required'),this.RegisterFormControls.fname.hasError('pattern'))
+   }
     const openSnackBar = this._snackBar.open('Registered Successfully', 'ok', {
       duration: 2000,
     });

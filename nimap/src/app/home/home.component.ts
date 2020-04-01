@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../commoncomponents/dialog/dialog.component';
+import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { DialogComponent } from '../commoncomponents/dialog/dialog.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private getUser: RegisterService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +21,13 @@ export class HomeComponent implements OnInit {
       height:'600px',
       data: { id: 'works'}
     });
+  }
+
+  getAllUsers()
+  {
+    this.getUser.getUser().subscribe(data=>{
+      console.log(data);
+    })
   }
 
   
