@@ -23,6 +23,9 @@ export class DialogComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  age = 0;
+  checknewsletter = false;
+  
   userData:IUser;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: Tags[] = [
@@ -45,8 +48,17 @@ export class DialogComponent implements OnInit {
   }
   createForm() {
     this.registerForm = this.formBuilder.group({
-      fname: ['', [Validators.pattern('/^[a-zA-Z]{3,7}$/')]],
-      lname: ['', [Validators.required, Validators.email]],
+      fname: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \-\']+')]],
+      lname: [''],
+      profilepic:[''],
+      email:['',[Validators.email]],
+      phone:['',[Validators.maxLength(10)]],
+      state:[''],
+      country:[''],
+      homeAddress1:[''],
+      homeAddress2:[''],
+      companyAddress1:[''],
+      companyAddress2:[''],
     });    
   }
 
@@ -58,17 +70,37 @@ export class DialogComponent implements OnInit {
        
       }, false);
       reader.readAsDataURL(event.target.files[0]);
+    } 
+  }
+
+  subscribeCheckbox(event) {
+    if (event.checked) {
+       this.checknewsletter = true;
+    } else {
+     this.checknewsletter = false;
     }
-    
   }
 
   onSubmitForm(){
    this.userData = {
-     fname:this.registerForm.value.fname
+     fname:this.registerForm.value.fname,
+     lanme:this.registerForm.value.lname,
+     email:this.registerForm.value.email,
+     phone:this.registerForm.value.phone,
+     profilePic:this.registerForm.value.profilepic,
+     age:this.age,
+     state:this.registerForm.value.state,
+     country:this.registerForm.value.country,
+     companyaddress1:this.registerForm.value.homeAddress1,
+     companyaddress2:this.registerForm.value.homeAddress2,
+     homeaddress1:this.registerForm.value.homeAddress1,
+     homeaddress2:this.registerForm.value.homeAddress2,
+     hobbies:this.tags,
+     subscribe:this.checknewsletter
    }
 
-   if(this.RegisterFormControls.fname.invalid){
-     console.log("invali",this.RegisterFormControls.fname.hasError('required'),this.RegisterFormControls.fname.hasError('pattern'))
+   if(this.RegisterFormControls.fname.valid){
+    console.log(this.userData)
    }
     const openSnackBar = this._snackBar.open('Registered Successfully', 'ok', {
       duration: 2000,

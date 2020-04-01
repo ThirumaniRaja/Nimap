@@ -2,7 +2,7 @@ export interface IUser{
     id?: number,
     fname: string,
     lanme?:string,
-    age?:string,
+    age?:number,
     profilePic?:string,
     email?:string,
     phone?:number,
@@ -12,7 +12,7 @@ export interface IUser{
     homeaddress2?:string,
     companyaddress1?:string,
     companyaddress2?:string,
-    hobbies?:[],
+    hobbies?:any,
     subscribe?:boolean
 
 }

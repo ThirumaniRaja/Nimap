@@ -32,7 +32,7 @@
                     ]
                 }
             ],
-            "hobbies": ["cricket"],
+            "hobbies": [{"name":"cricket"}],
             "subscribe": "true"
         },
         {
@@ -67,7 +67,7 @@
                     ]
                 }
             ],
-            "hobbies": ["cricket","foolball"],
+            "hobbies": [{"name":"cricket"},{"name":"basketball"}],
             "subscribe": "true"
         }
     ]

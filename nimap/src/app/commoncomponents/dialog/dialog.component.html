@@ -12,7 +12,7 @@
       <form [formGroup]="registerForm" class="row">
         <div class="col-lg-2 col-md-3 col-3">
           <span class="photo_upload_div" (click)="fileInput.click()">
-            <input type="file" accept="image/*" #fileInput (click)="fileInput.value = null"
+            <input type="file" accept="image/*" #fileInput (click)="fileInput.value = null" formControlName="profilepic"
               (change)="imageUpload($event)" style="display: none;">
             <i class="material-icons camera">
               account_box
@@ -35,18 +35,18 @@
 
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Email</mat-label>
-            <input matInput type="mail">
+            <input matInput type="mail" formControlName="email">
           </mat-form-field>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Phone Number</mat-label>
-            <input matInput type="number">
+            <input matInput type="number" formControlName="phone">
           </mat-form-field>
           <br>
-          <mat-label>Age</mat-label>
-          <mat-slider min="0" max="60" step="5" value="0" style="width: 80%;"></mat-slider>
+          <mat-label>Age</mat-label>&nbsp;<mat-label *ngIf="age > 0">{{age}}</mat-label>
+          <mat-slider min="0" max="60" step="1" [(value)]="age" style="width: 80%;"></mat-slider>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>State</mat-label>
-            <mat-select [(value)]="state">
+            <mat-select [(value)]="state" formControlName="state">
               <mat-option value="Maharashtra">
                 Maharashtra
               </mat-option>
@@ -54,7 +54,7 @@
           </mat-form-field>
           <mat-form-field appearance='outline' style="width: 80%;">
             <mat-label>Country</mat-label>
-            <mat-select [(value)]="country">
+            <mat-select [(value)]="country" formControlName="country">
               <mat-option value="India">
                 india
               </mat-option>
@@ -75,11 +75,11 @@
           <div>
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>HomeAddress1</mat-label>
-              <input matInput type="text">
+              <input matInput type="text" formControlName="homeAddress1">
             </mat-form-field>
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>HomeAddress2</mat-label>
-              <input matInput type="text">
+              <input matInput type="text" formControlName="homeAddress2">
             </mat-form-field>
           </div>
 
@@ -87,11 +87,11 @@
           <div>
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>CompanyAddress1</mat-label>
-              <input matInput type="text">
+              <input matInput type="text" formControlName="companyAddress1">
             </mat-form-field>
             <mat-form-field appearance='outline' style="width: 80%;">
               <mat-label>CompanyAddress2</mat-label>
-              <input matInput type="text">
+              <input matInput type="text" formControlName="companyAddress2">
             </mat-form-field>
           </div>
           <mat-form-field class="example-chip-list">
@@ -101,14 +101,14 @@
                 {{tag.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
-              <input placeholder="New tag..."
+              <input placeholder="New hobbies..."
                      [matChipInputFor]="chipList"
                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                      [matChipInputAddOnBlur]="addOnBlur"
                      (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
           </mat-form-field>
-          <mat-checkbox>subscribe to newsletter</mat-checkbox>
+          <mat-checkbox (change)='subscribeCheckbox($event)'>subscribe to newsletter</mat-checkbox>
         </div>
       </form>
     </div>
