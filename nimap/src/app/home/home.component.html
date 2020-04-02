@@ -1,12 +1,33 @@
 <div class="main_container">
     <div class="card_details">
-        <mat-form-field class="w-100" appearance='outline' >
+        <mat-form-field class="w-100" appearance='outline'>
             <input matInput type="text" placeholder="Enter a job Description">
         </mat-form-field>
-        <span style="margin-left: 30px;"><button mat-raised-button class="btn_color text_color" (click)="getAllUsers()"><mat-icon matPrefix>search</mat-icon>Search</button></span>
+        <span style="margin-left: 30px;"><button mat-raised-button class="btn_color text_color" (click)="getAllUsers()">
+                <mat-icon matPrefix>search</mat-icon>Search
+            </button></span>
         <br><button mat-raised-button class="btn_color text_color" (click)="onClickRegister()">Register</button>
+        <div style="margin-top: 30px;">
+            <span class="dot1"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        
+    </div>
+    <div>
+        <div class="content">
+            <span>we're leaders in</span>
+            <h1>Creative Digital Recruitment</h1>
+            <span class="dash"></span>
+            <span>Based in Surry Hills, the creative hub of Sydney 
+                we are surrounded by creativity and that reflects on the type of jobs we recruit for.</span>
+
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button mat-stroked-button class="find_btn">
+                <a href="https://nimapinfotech.com/" target='_blank'>FIND OUT MORE ABOUT US!</a>
+            </button>
+        </div>
+
     </div>
 </div>
-<app-footer></app-footer>
-
-

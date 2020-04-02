@@ -2,19 +2,12 @@
     width: 100%;
     text-align: center;
     background-color: #292826;
-    position: fixed;
+    position: relative;
     bottom: 0px;
     z-index: 10;
+
 }
 
-.main_footer:before{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: #747474;
-    left: 0;
-    top: 0
-}
 
 .card_footer{
     padding: 15px;

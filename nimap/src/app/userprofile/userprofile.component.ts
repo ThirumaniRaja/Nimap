@@ -29,20 +29,20 @@ export class UserprofileComponent implements OnInit {
     })
   }
 
-  onClickUpdate(formData){
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '550px',
-      height:'600px',
-      data: { action: 'update',updateData:formData}
-    });
-  }
-
-  onClickProfileUpdate(formData,value){
+  onClickUpdate(formData,value){
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '550px',
       height:'600px',
       data: { action: 'update',updateData:formData,edit:value}
     });
   }
+
+  // onClickProfileUpdate(formData,value){
+  //   const dialogRef = this.dialog.open(DialogComponent, {
+  //     width: '550px',
+  //     height:'600px',
+  //     data: { action: 'update',updateData:formData,edit:value}
+  //   });
+  // }
   
 }

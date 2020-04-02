@@ -87,7 +87,7 @@ export class DialogComponent implements OnInit {
       lname: [''],
       profilepic: [''],
       email: ['', [Validators.email]],
-      phone: ['', [Validators.maxLength(10)]],
+      phone: [''] ,
       address: [''],
       state: [''],
       country: [''],
@@ -156,6 +156,11 @@ export class DialogComponent implements OnInit {
       })
 
     }
+    else{
+      this._snackBar.open('please provide valid first name', 'ok', {
+        duration: 2000,
+      });
+    }
   }
 
   //chips
@@ -182,6 +187,11 @@ export class DialogComponent implements OnInit {
   //update method for update form
   onUpdateForm() {
     this.updateId = this.data.updateData.id;
+   if(this.imageContainer.length === 0){
+     this.imageContainer = this.data.updateData.profilePic
+     console.log('000',this.imageContainer)
+   }
+    this.imageContainer = this.data.updateData.profilePic
     console.log(this.data.updateData.id)
     console.log(this.updateId)
     this.addressData = [
@@ -208,7 +218,7 @@ export class DialogComponent implements OnInit {
       address: this.addressData,
     }
 
-    console.log(this.updateId, this.age)
+    console.log(this.userData, this.age)
     this.register.updateUser(this.userData, this.updateId).subscribe(data => {
       console.log(data)
       this._snackBar.open('Form Updated Successfully', 'ok', {
@@ -216,12 +226,16 @@ export class DialogComponent implements OnInit {
       });
       this.closeDialog();
     })
-  }
+   }
 
   //onload data for update 
   onEditData() {
     if (this.data.action === 'update') {
       this.age = this.data.updateData.age;
+      if(this.data.updateData.profilePic !==''){
+      this.imageContainer = this.data.updateData.profilePic;
+      this.showIcon = false
+      }
       this.checknewsletter = this.data.updateData.subscribe;
       console.log(this.data.updateData.state)
       this.registerForm.patchValue({
@@ -229,7 +243,7 @@ export class DialogComponent implements OnInit {
         fname: this.data.updateData.fname,
         lname: this.data.updateData.lanme,
         age: this.age,
-        profilepic: this.data.updateData.profilePic,
+       // profilepic: this.data.updateData.profilePic,
         email: this.data.updateData.email,
         phone: this.data.updateData.phone,
         address: this.data.updateData.address,

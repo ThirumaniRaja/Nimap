@@ -7,8 +7,8 @@
                     <img [src]="data.profilePic" height="120px" width="100px">
                 </div>
                 <div>
-                    <span><button mat-flat-button class="btn" (click)="onClickProfileUpdate(data,'photo')">Edit Photo</button></span>
-                    <span><button mat-flat-button class="btn" (click)="onClickUpdate(data)">Edit Profile</button></span>
+                    <span><button mat-flat-button class="btn" (click)="onClickUpdate(data,'photo')">Edit Photo</button></span>
+                    <span><button mat-flat-button class="btn" (click)="onClickUpdate(data,'profile')">Edit Profile</button></span>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-12">
@@ -26,11 +26,12 @@
                     <span *ngIf="data.subscribe">and please send me newsletter</span>
                     <span *ngIf="data.phone !==''">, please reach out to me on my phone number {{data.phone}}</span>
                 </div>
+                <div>
+                    <span><button mat-flat-button class="btn_agree">I Agree</button></span>
+                </div>
             </div>
 
         </div>
     </div>
 </div>
-<div style="margin-top: 20px;">
-    <app-footer></app-footer>
-</div>
+
