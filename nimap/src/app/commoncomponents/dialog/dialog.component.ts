@@ -46,7 +46,6 @@ export class DialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private register: RegisterService,
     private _snackBar: MatSnackBar) {
-    console.log(data);
   }
 
   ngOnInit(): void {
@@ -71,7 +70,6 @@ export class DialogComponent implements OnInit {
   onEditPhoto() {
     if (this.data.edit === 'photo') {
       this.formDisable = true;
-      console.log("disable")
     }
   }
 
@@ -100,11 +98,9 @@ export class DialogComponent implements OnInit {
 
   imageUpload(event) {
     if (event.target.files && event.target.files[0]) {
-      console.log(event.target.files[0])
       const reader = new FileReader();
       reader.addEventListener('load', (event: any) => {
         this.imageContainer = event.target.result;
-        console.log(this.imageContainer)
         this.showIcon = false;
 
       }, false);
@@ -121,7 +117,6 @@ export class DialogComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log(this.adds)
     this.addressData = [
       {
         officeAddress: [{ address1: this.registerForm.value.companyAddress1 }, { address2: this.registerForm.value.companyAddress2 }
@@ -146,9 +141,7 @@ export class DialogComponent implements OnInit {
     }
 
     if (this.RegisterFormControls.fname.valid) {
-      console.log(this.userData)
       this.register.adduser(this.userData).subscribe(data => {
-        console.log(data)
         this._snackBar.open('Registered Successfully', 'ok', {
           duration: 2000,
         });
@@ -189,11 +182,8 @@ export class DialogComponent implements OnInit {
     this.updateId = this.data.updateData.id;
    if(this.imageContainer.length === 0){
      this.imageContainer = this.data.updateData.profilePic
-     console.log('000',this.imageContainer)
    }
     this.imageContainer = this.data.updateData.profilePic
-    console.log(this.data.updateData.id)
-    console.log(this.updateId)
     this.addressData = [
       {
         officeAddress: [{ address1: this.registerForm.value.companyAddress1 }, { address2: this.registerForm.value.companyAddress2 }
@@ -218,9 +208,7 @@ export class DialogComponent implements OnInit {
       address: this.addressData,
     }
 
-    console.log(this.userData, this.age)
     this.register.updateUser(this.userData, this.updateId).subscribe(data => {
-      console.log(data)
       this._snackBar.open('Form Updated Successfully', 'ok', {
         duration: 2000,
       });
@@ -237,13 +225,11 @@ export class DialogComponent implements OnInit {
       this.showIcon = false
       }
       this.checknewsletter = this.data.updateData.subscribe;
-      console.log(this.data.updateData.state)
       this.registerForm.patchValue({
         state: this.data.updateData.state,
         fname: this.data.updateData.fname,
         lname: this.data.updateData.lanme,
         age: this.age,
-       // profilepic: this.data.updateData.profilePic,
         email: this.data.updateData.email,
         phone: this.data.updateData.phone,
         address: this.data.updateData.address,

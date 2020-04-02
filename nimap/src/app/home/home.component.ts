@@ -22,13 +22,5 @@ export class HomeComponent implements OnInit {
       data: { action: 'register'}
     });
   }
-
-  getAllUsers()
-  {
-    this.getUser.getUser().subscribe(data=>{
-      console.log(data);
-    })
-  }
-
   
 }

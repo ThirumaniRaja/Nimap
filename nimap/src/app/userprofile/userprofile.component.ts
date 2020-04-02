@@ -21,11 +21,8 @@ export class UserprofileComponent implements OnInit {
 
   loadUserData() {
     this.userData.getUser().subscribe(result => {
-      console.log(result)
       this.registeredData = result;
       this.hobbies =result[0]['hobbies'];
-      //this.img = this.registeredData.profilePic;
-      console.log(this.hobbies)
     })
   }
 
@@ -36,13 +33,5 @@ export class UserprofileComponent implements OnInit {
       data: { action: 'update',updateData:formData,edit:value}
     });
   }
-
-  // onClickProfileUpdate(formData,value){
-  //   const dialogRef = this.dialog.open(DialogComponent, {
-  //     width: '550px',
-  //     height:'600px',
-  //     data: { action: 'update',updateData:formData,edit:value}
-  //   });
-  // }
   
 }
