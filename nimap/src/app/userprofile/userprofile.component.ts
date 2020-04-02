@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class UserprofileComponent implements OnInit {
   registeredData: any;
   hobbies:[];
+  img=[];
 
   constructor(private userData: RegisterService,public dialog: MatDialog) { }
 
@@ -23,13 +24,14 @@ export class UserprofileComponent implements OnInit {
       console.log(result)
       this.registeredData = result;
       this.hobbies =result[0]['hobbies'];
+      //this.img = this.registeredData.profilePic;
       console.log(this.hobbies)
     })
   }
 
   onClickUpdate(formData){
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px',
+      width: '550px',
       height:'600px',
       data: { action: 'update',updateData:formData}
     });
@@ -37,7 +39,7 @@ export class UserprofileComponent implements OnInit {
 
   onClickProfileUpdate(formData,value){
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px',
+      width: '550px',
       height:'600px',
       data: { action: 'update',updateData:formData,edit:value}
     });

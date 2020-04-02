@@ -11,17 +11,20 @@
   <div mat-dialog-content>
     <div class="col-lg-12 col-md-12 col-12">
       <form [formGroup]="registerForm" class="row">
-        <div class="col-lg-2 col-md-3 col-3">
-          <span class="photo_upload_div" (click)="fileInput.click()">
+        <div class="col-lg-3 col-md-3 col-3">
+          <span *ngIf="showIcon" class="photo_upload_div" (click)="fileInput.click()">
             <input type="file" accept="image/*" #fileInput (click)="fileInput.value = null" formControlName="profilepic"
               (change)="imageUpload($event)" style="display: none;">
             <i class="material-icons camera">
               account_box
             </i>
-            <!-- <div class="change__profile_image-selected" [style.backgroundImage]="'url('+ imageContainer +')'"></div> -->
+            
+          </span>
+          <span *ngIf="!showIcon" class="photo_upload_div">
+            <img [src]="imageContainer" height="100px" width="100px">
           </span>
         </div>
-        <div class="col-lg-10 col-md-9 col-9">
+        <div class="col-lg-9 col-md-9 col-9">
 
 
           <mat-form-field appearance='outline' style="width: 40%; margin-right: 15px;">

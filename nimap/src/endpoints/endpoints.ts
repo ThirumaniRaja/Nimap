@@ -1,3 +1,4 @@
 export const apiEndpoint = {
-    adduser:'users'
+    adduser:'users',
+    updateuser:'users/'
 };

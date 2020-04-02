@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
 
   onClickRegister(){
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px',
-      height:'600px',
+      width: '550px',
+      height:'580px',
       data: { action: 'register'}
     });
   }

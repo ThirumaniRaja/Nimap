@@ -1,9 +1,9 @@
 export interface IUser{
-    id?: number,
+    id?: string,
     fname: string,
     lanme?:string,
     age?:number,
-    profilePic?:string,
+    profilePic?:any,
     email?:string,
     phone?:number,
     state?:string,

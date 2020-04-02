@@ -1,14 +1,14 @@
 <div class="main_container">
-    <div class="card_details col-lg-12 col-md-12 col-12" *ngFor="let data of registeredData let i = index;" >
+    <div class="card_details card_border col-lg-12 col-md-12 col-12" *ngFor="let data of registeredData let i = index;" >
         <div class="row">
             <div class="col-lg-4 col-md-12 col-12">
                 <div>Profile</div>
                 <div>
-                    <img src="‪" alt="" height="60" width="40px">
+                    <img [src]="data.profilePic" height="120px" width="100px">
                 </div>
                 <div>
-                    <span><button mat-raised-button class="btn" (click)="onClickProfileUpdate(data,'photo')">Edit Photo</button></span>
-                    <span><button mat-raised-button class="btn" (click)="onClickUpdate(data)">Edit Profile</button></span>
+                    <span><button mat-flat-button class="btn" (click)="onClickProfileUpdate(data,'photo')">Edit Photo</button></span>
+                    <span><button mat-flat-button class="btn" (click)="onClickUpdate(data)">Edit Profile</button></span>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-12">
@@ -30,4 +30,7 @@
 
         </div>
     </div>
+</div>
+<div style="margin-top: 20px;">
+    <app-footer></app-footer>
 </div>

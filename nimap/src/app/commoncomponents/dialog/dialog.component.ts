@@ -33,34 +33,43 @@ export class DialogComponent implements OnInit {
   formDisable = false;
   age = 0;
   checknewsletter = false;
+  updateId;
+  imageContainer = [];
+  showIcon = true;
 
   addressData: Address[];
   userData: IUser;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags: Tags[] = [
-    { name: 'Cricket' }
-  ];
+  tags: Tags[];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
     private register: RegisterService,
     private _snackBar: MatSnackBar) {
-      console.log(data)
-      //this.onEditData();
-      
-     }
+    console.log(data);
+  }
 
   ngOnInit(): void {
-    this.onEditPhoto();
-    // this.onEditData();
     this.createForm();
+    this.onTagsCheck();
+    this.onEditPhoto();
+    this.onEditData();
   }
-  ngAfterViewInit(){
-        this.onEditData();
+  ngAfterViewInit() {
+    // this.onEditData();
   }
 
-  onEditPhoto(){
-    if(this.data.edit === 'photo'){
+  onTagsCheck() {
+    if (this.data.action === 'register') {
+      this.tags = [];
+    }
+    else {
+      this.tags = this.data.updateData.hobbies;
+    }
+  }
+
+  onEditPhoto() {
+    if (this.data.edit === 'photo') {
       this.formDisable = true;
       console.log("disable")
     }
@@ -79,8 +88,8 @@ export class DialogComponent implements OnInit {
       profilepic: [''],
       email: ['', [Validators.email]],
       phone: ['', [Validators.maxLength(10)]],
-      address:[''],
-      state:  [''],
+      address: [''],
+      state: [''],
       country: [''],
       homeAddress1: [''],
       homeAddress2: [''],
@@ -94,6 +103,9 @@ export class DialogComponent implements OnInit {
       console.log(event.target.files[0])
       const reader = new FileReader();
       reader.addEventListener('load', (event: any) => {
+        this.imageContainer = event.target.result;
+        console.log(this.imageContainer)
+        this.showIcon = false;
 
       }, false);
       reader.readAsDataURL(event.target.files[0]);
@@ -115,7 +127,7 @@ export class DialogComponent implements OnInit {
         officeAddress: [{ address1: this.registerForm.value.companyAddress1 }, { address2: this.registerForm.value.companyAddress2 }
         ],
         homeAddress: [
-          { address1:  this.registerForm.value.homeAddress1}, { address2: this.registerForm.value.homeAddress2 }]
+          { address1: this.registerForm.value.homeAddress1 }, { address2: this.registerForm.value.homeAddress2 }]
       }
     ]
 
@@ -124,26 +136,26 @@ export class DialogComponent implements OnInit {
       lanme: this.registerForm.value.lname,
       email: this.registerForm.value.email,
       phone: this.registerForm.value.phone,
-      profilePic: this.registerForm.value.profilepic,
+      profilePic: this.imageContainer,
       age: this.age,
       state: this.registerForm.value.state,
       country: this.registerForm.value.country,
       hobbies: this.tags,
       subscribe: this.checknewsletter,
-      address:this.addressData  
+      address: this.addressData
     }
 
     if (this.RegisterFormControls.fname.valid) {
       console.log(this.userData)
       this.register.adduser(this.userData).subscribe(data => {
         console.log(data)
+        this._snackBar.open('Registered Successfully', 'ok', {
+          duration: 2000,
+        });
+        this.closeDialog();
       })
 
     }
-    const openSnackBar = this._snackBar.open('Registered Successfully', 'ok', {
-      duration: 2000,
-    });
-    this.closeDialog();
   }
 
   //chips
@@ -166,22 +178,73 @@ export class DialogComponent implements OnInit {
     }
   }
 
-  onUpdateForm(){
 
+  //update method for update form
+  onUpdateForm() {
+    this.updateId = this.data.updateData.id;
+    console.log(this.data.updateData.id)
+    console.log(this.updateId)
+    this.addressData = [
+      {
+        officeAddress: [{ address1: this.registerForm.value.companyAddress1 }, { address2: this.registerForm.value.companyAddress2 }
+        ],
+        homeAddress: [
+          { address1: this.registerForm.value.homeAddress1 }, { address2: this.registerForm.value.homeAddress2 }]
+      }
+    ]
+
+    this.userData = {
+
+      fname: this.registerForm.value.fname,
+      lanme: this.registerForm.value.lname,
+      email: this.registerForm.value.email,
+      phone: this.registerForm.value.phone,
+      profilePic: this.imageContainer,
+      age: this.age,
+      state: this.registerForm.value.state,
+      country: this.registerForm.value.country,
+      hobbies: this.tags,
+      subscribe: this.checknewsletter,
+      address: this.addressData,
+    }
+
+    console.log(this.updateId, this.age)
+    this.register.updateUser(this.userData, this.updateId).subscribe(data => {
+      console.log(data)
+      this._snackBar.open('Form Updated Successfully', 'ok', {
+        duration: 2000,
+      });
+      this.closeDialog();
+    })
   }
 
-  onEditData(){
-    if(this.data.action === 'update'){
+  //onload data for update 
+  onEditData() {
+    if (this.data.action === 'update') {
+      this.age = this.data.updateData.age;
+      this.checknewsletter = this.data.updateData.subscribe;
       console.log(this.data.updateData.state)
-      this.registerForm.patchValue({  
+      this.registerForm.patchValue({
         state: this.data.updateData.state,
-        fname:this.data.updateData.fname,
-        lname:this.data.updateData.lanme
+        fname: this.data.updateData.fname,
+        lname: this.data.updateData.lanme,
+        age: this.age,
+        profilepic: this.data.updateData.profilePic,
+        email: this.data.updateData.email,
+        phone: this.data.updateData.phone,
+        address: this.data.updateData.address,
+        country: this.data.updateData.country,
+        hobbies: this.data.updateData.hobbies,
+        //id:this.data.updateData.id,
+        subscribe: this.checknewsletter,
+        homeAddress1: this.data.updateData.address[0].officeAddress[0].address1,
+        homeAddress2: this.data.updateData.address[0].officeAddress[1].address2,
+        companyAddress1: this.data.updateData.address[0].homeAddress[0].address1,
+        companyAddress2: this.data.updateData.address[0].homeAddress[1].address2
 
       });
-      // this.registerForm.patchValue({});
 
+    }
   }
-}
 
 }
